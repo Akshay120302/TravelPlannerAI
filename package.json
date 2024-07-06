@@ -1,11 +1,19 @@
-{ "dependencies": {
-  "cookie-parser": "^1.4.6",
-  "cors": "^2.8.5",
-  "jsonwebtoken": "^9.0.2",
-  "leaflet": "^1.9.4",
-  "mongoose": "^8.4.0",
-  "react": "^18.3.1",
-  "react-dom": "^18.3.1",
-  "react-leaflet": "^4.2.1"
-}
+{
+  "name": "travelplannerai",
+  "version": "1.0.0",
+  "description": "Travel Planner AI",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm install --prefix server && npm run build --prefix server"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "jsonwebtoken": "^9.0.2",
+    "leaflet": "^1.9.4",
+    "mongoose": "^8.4.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-leaflet": "^4.2.1"
+  }
 }
