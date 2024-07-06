@@ -31,6 +31,7 @@ const EventCard = ({ experience }) => (
 );
 
 const FinalPlannedTrip = () => {
+
   const [location, setLocation] = useState(null); // Initialize as null
   const [currentIndex, setCurrentIndex] = useState(0);
   const [placeName, setPlaceName] = useState('');
@@ -38,18 +39,10 @@ const FinalPlannedTrip = () => {
   const [airQualityData, setAirQualityData] = useState(null);
 
   const fetchWeatherData = async (latitude, longitude) => {
-    const options = {
-      method: 'GET',
-      url: 'https://weatherapi-com.p.rapidapi.com/current.json',
-      params: { q: `${latitude},${longitude}` },
-      headers: {
-        'x-rapidapi-key': process.env.REACT_APP_X_RAPIDAPI_KEY_W,
-        'x-rapidapi-host': process.env.REACT_APP_X_RAPIDAPI_HOST_W,
-      },
-    };
-
     try {
-      const response = await axios.request(options);
+      const response = await axios.get('/api/weather', {
+        params: { latitude, longitude }
+      });
       setWeatherData(response.data);
     } catch (error) {
       console.error("Error fetching weather data:", error);
@@ -57,18 +50,10 @@ const FinalPlannedTrip = () => {
   };
 
   const fetchAirQualityData = async (latitude, longitude) => {
-    const options = {
-      method: 'GET',
-      url: 'https://air-quality.p.rapidapi.com/current/airquality',
-      params: { lon: longitude, lat: latitude },
-      headers: {
-        'x-rapidapi-key': process.env.REACT_APP_X_RAPIDAPI_KEY_AQ,
-        'x-rapidapi-host': process.env.REACT_APP_X_RAPIDAPI_HOST_AQ,
-      }
-    };
-
     try {
-      const response = await axios.request(options);
+      const response = await axios.get('/api/air-quality', {
+        params: { latitude, longitude }
+      });
       setAirQualityData(response.data);
     } catch (error) {
       console.error("Error fetching air quality data:", error);

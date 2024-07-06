@@ -103,18 +103,10 @@ const Preferences = () => {
 
   useEffect(() => {
     const fetchDestId = async (destination) => {
-      const options = {
-        method: 'GET',
-        url: 'https://booking-com.p.rapidapi.com/v1/hotels/locations',
-        params: { name: destination, locale: 'en-gb' },
-        headers: {
-          'x-rapidapi-key': process.env.REACT_APP_X_RAPIDAPI_KEY_DID,
-          'x-rapidapi-host': process.env.REACT_APP_X_RAPIDAPI_HOST_DID,
-        }
-      };
-
       try {
-        const response = await axios.request(options);
+        const response = await axios.get('/api/destinations', {
+          params: { destination }
+        });
         if (response.data && response.data.length > 0) {
           return response.data[0].dest_id;
         }
@@ -134,7 +126,7 @@ const Preferences = () => {
       }
       setDestIds(newDestIds);
     };
-
+  
     if (destinations.length > 0) {
       fetchAllDestIds();
     }
@@ -162,46 +154,73 @@ const Preferences = () => {
     }
   }, [currentIndex, destinations, checkoutDate, adultsNumber, destIds]);
 
+  // const fetchHotels = async (dest_id, checkout_date, adults_number) => {
+  //   if (!dest_id) {
+  //     console.error('dest_id is missing');
+  //     return;
+  //   }
+
+  //   try {
+  //     const options = {
+  //       method: 'GET',
+  //       url: 'https://booking-com.p.rapidapi.com/v1/hotels/search',
+  //       params: {
+  //         checkout_date,
+  //         order_by: 'popularity',
+  //         filter_by_currency: 'AED',
+  //         include_adjacency: 'true',
+  //         children_number: '2',
+  //         categories_filter_ids: 'class::2,class::4,free_cancellation::1',
+  //         room_number: '1',
+  //         dest_id,
+  //         dest_type: 'city',
+  //         adults_number,
+  //         page_number: '0',
+  //         checkin_date: '2024-09-14',
+  //         locale: 'en-gb',
+  //         units: 'metric',
+  //         children_ages: '5,0'
+  //       },
+  //       headers: {
+  //         'x-rapidapi-key': process.env.REACT_APP_X_RAPIDAPI_KEY_DesData,
+  //         'x-rapidapi-host': process.env.REACT_APP_X_RAPIDAPI_HOST_DesData, 
+  //       }
+  //     };
+
+  //     const response = await axios.request(options);
+  //     setHotels(response.data.result);
+  //     const hotelCoords = response.data.result.map(hotel => ({
+  //       lat: hotel.latitude,
+  //       lon: hotel.longitude,
+  //       name: hotel.hotel_name,
+  //       address: hotel.address
+  //     }));
+  //     setHotelLocations(hotelCoords);
+  //   } catch (error) {
+  //     console.error('Error fetching hotels:', error);
+  //   }
+  // };
+
   const fetchHotels = async (dest_id, checkout_date, adults_number) => {
     if (!dest_id) {
       console.error('dest_id is missing');
       return;
     }
-
+  
     try {
-      const options = {
-        method: 'GET',
-        url: 'https://booking-com.p.rapidapi.com/v1/hotels/search',
+      const response = await axios.get('/api/hotels', {
         params: {
-          checkout_date,
-          order_by: 'popularity',
-          filter_by_currency: 'AED',
-          include_adjacency: 'true',
-          children_number: '2',
-          categories_filter_ids: 'class::2,class::4,free_cancellation::1',
-          room_number: '1',
           dest_id,
-          dest_type: 'city',
+          checkout_date,
           adults_number,
-          page_number: '0',
-          checkin_date: '2024-09-14',
-          locale: 'en-gb',
-          units: 'metric',
-          children_ages: '5,0'
-        },
-        headers: {
-          'x-rapidapi-key': process.env.REACT_APP_X_RAPIDAPI_KEY_DesData,
-          'x-rapidapi-host': process.env.REACT_APP_X_RAPIDAPI_HOST_DesData, 
         }
-      };
-
-      const response = await axios.request(options);
+      });
       setHotels(response.data.result);
       const hotelCoords = response.data.result.map(hotel => ({
         lat: hotel.latitude,
         lon: hotel.longitude,
         name: hotel.hotel_name,
-        address: hotel.address
+        address: hotel.address,
       }));
       setHotelLocations(hotelCoords);
     } catch (error) {
