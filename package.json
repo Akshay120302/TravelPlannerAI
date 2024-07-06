@@ -1,26 +1,11 @@
-{
-  "name": "travel-planner-ai",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js",
-    "start": "node server/index.js",
-    "build": "npm install && npm install --prefix client && npm run build --prefix client"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "cookie-parser": "^1.4.6",
-    "cors": "^2.8.5",
-    "jsonwebtoken": "^9.0.2",
-    "leaflet": "^1.9.4",
-    "mongoose": "^8.4.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-leaflet": "^4.2.1"
-  }
+{ "dependencies": {
+  "cookie-parser": "^1.4.6",
+  "cors": "^2.8.5",
+  "jsonwebtoken": "^9.0.2",
+  "leaflet": "^1.9.4",
+  "mongoose": "^8.4.0",
+  "react": "^18.3.1",
+  "react-dom": "^18.3.1",
+  "react-leaflet": "^4.2.1"
+}
 }
