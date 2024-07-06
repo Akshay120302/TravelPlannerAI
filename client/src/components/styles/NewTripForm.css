@@ -1,0 +1,121 @@
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  input[type="text"], input[type="date"] {
+    width: -webkit-fill-available;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+  
+  .dates {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+  
+.add-destination {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #2d572c;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.medTextSize{
+  font-weight: 700;
+}
+
+.chain-symbol {
+  color: #2d572c;
+  font-size: 24px;
+}
+  
+  .H3{
+    font-size: 30px;
+  }
+  .remove-destination {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #ff0800;
+    color: #fff;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 337px;
+}
+  
+  .activities {
+    margin-bottom: 20px;
+  }
+  
+  .activity-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .activity-options button {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+  
+  .activity-options button.active {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+  }
+  
+  .people {
+    margin-bottom: 20px;
+  }
+  
+  .people-selector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .people-selector button {
+    padding: 10px;
+    border: none;
+    background-color: #f0f0f0;
+    cursor: pointer;
+  }
+  
+  .people-selector span {
+    margin: 0 10px;
+    font-size: 16px;
+  }
+  

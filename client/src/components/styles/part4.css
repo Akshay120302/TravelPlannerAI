@@ -1,0 +1,44 @@
+.firstOne,.secondOne{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    padding: 3px;
+    border-color: aqua;
+    border-radius: 2px;
+    /* background-color: bisque; */
+    gap: 20px;
+    flex-direction: column;
+}
+
+.block4 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding: 3px;
+    gap: 20px;
+    border-color: aqua;
+    border-radius: 2px;
+    height: 100%;
+}
+
+.UpperoneSmall , .LoweroneSmall{
+    width: 90%;
+    height: 70%;
+    background-color: blueviolet;
+    border-radius: 40px;
+}
+
+.LoweroneBig , .UpperoneBig{
+    width: 90%;
+    height: 100%;
+    border-color: aqua;
+    border-radius: 2px;
+    background-color: rgb(126, 129, 217);
+    border-radius: 40px;
+}
