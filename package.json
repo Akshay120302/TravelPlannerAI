@@ -4,7 +4,8 @@
   "description": "Travel Planner AI",
   "main": "index.js",
   "scripts": {
-    "build": "npm install --prefix server && npm run build --prefix server"
+    "build": "npm install --prefix server && npm run build --prefix server",
+    "start": "npm start --prefix server"
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",
