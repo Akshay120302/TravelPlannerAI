@@ -4,6 +4,12 @@
   flex-direction: row;
   height: 100vh;
 }
+
+.vertical-timeline-element-content .vertical-timeline-element-date {
+  font-size: 14px;
+  font-size: .875rem;
+  background-color: #1d1836;
+}
   
   .timeline-container {
     width: 50%;

@@ -13,24 +13,26 @@ import { textVariant } from '../utils/motion';
 import 'react-vertical-timeline-component/style.min.css';
 import Chatbot from './Chatbot';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
-const EventCard = ({ experience }) => (
+const EventCard = ({ dest }) => (
   <VerticalTimelineElement
     contentStyle={{ background: '#1d1836', color: '#fff' }}
     contentArrowStyle={{ borderRight: '7px solid  #232631' }}
-    date={experience.time}
-    iconStyle={{ background: experience.iconBg }}
-    icon={
-      <img src={experience.icon} alt={experience.company_name} className='w-[100%] h-[100%] object-contain' />
-    }
+    date={`${dest.start_date}`}
+    iconStyle={{ background: '#4A90E2' }}
+    icon={<img src={markerIconPng} alt="Destination" className='w-[100%] h-[100%] object-contain' />}
   >
     <div>
-      <h3 className='text-white text-[24px]'>{experience.title}</h3>
+      <h3 className='text-white text-[24px]'>{dest.location}</h3>
     </div>
   </VerticalTimelineElement>
 );
 
 const FinalPlannedTrip = () => {
+
+  const { destinations } = useSelector((state) => state.trip);
+  console.log(destinations);
 
   const [location, setLocation] = useState(null); // Initialize as null
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -92,8 +94,8 @@ const FinalPlannedTrip = () => {
         </p>
         <div className='mt-20 flex flex-col' id='test'>
           <VerticalTimeline>
-            {experiences.map((experience, index) => (
-              <EventCard key={index} experience={experience} />
+            {destinations.map((dest, index) => (
+              <EventCard key={index} dest={dest} />
             ))}
           </VerticalTimeline>
         </div>

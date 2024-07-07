@@ -1,0 +1,18 @@
+.New-trip-btn{
+    padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #2d572c;
+  color: #fff;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.btn-handler{
+    margin-top: 65px;
+    /* width: 100%; */
+    height: fit-content;
+    display: flex;
+    flex-direction: column-reverse;
+}
