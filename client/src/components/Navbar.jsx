@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./styles/Navbar.css";
 import { useSelector } from "react-redux";
 import MenuModal from "./MenuModal";
 
@@ -37,7 +36,7 @@ const Navbar = () => {
     <>
       <nav className="navbar">
         <div
-          className="navbar fixed top-0 flex w-full items-center justify-center z-50 transition-opacity duration-300"
+          className="navbar fixed top-0 left-0 flex w-full items-center justify-center z-50 transition-opacity duration-300"
           style={{ opacity }}
         >
           <div className="mx-5 flex h-14 w-full max-w-screen-xl items-center justify-between md:h-16">
@@ -89,7 +88,7 @@ const Navbar = () => {
                     </>
                   ) : (
                     <Link
-                      className="h-fit cursor-pointer rounded-full bg-black px-4 py-1.5 text-sm transition-colors md:text-base text-white hover:bg-accent-green-2"
+                      className="h-fit cursor-pointer rounded-full bg-black px-5 py-1.5 !text-white"
                       to="./signin"
                     >
                       Sign In

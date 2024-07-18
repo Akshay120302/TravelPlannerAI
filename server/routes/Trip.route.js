@@ -1,5 +1,5 @@
 import express from 'express';
-import { createTrip, getTripOptions } from '../controllers/Trip.controller.js';
+import { createTrip, getListing, getTripOptions } from '../controllers/Trip.controller.js';
 
 const router = express.Router();
 
@@ -10,5 +10,6 @@ router.post('/create', createTrip);
 router.get('/accommodations', getTripOptions('accommodations'));
 router.get('/flights', getTripOptions('flights'));
 router.get('/restaurants', getTripOptions('restaurants'));
+router.get('/get/:id', getListing);
 
 export default router;

@@ -30,3 +30,15 @@ export const getTripOptions = (optionType) => (req, res, next) => {
   // Implement logic for fetching trip options based on optionType
   res.json({ message: `Fetching ${optionType} options...` });
 };
+
+export const getListing = async (req, res, next) => {
+  try {
+    const listing = await Tripdata.findById(req.params.id);
+    if (!listing) {
+      return next(errorHandler(404, 'Listing not found!'));
+    }
+    res.status(200).json(listing);
+  } catch (error) {
+    next(error);
+  }
+};

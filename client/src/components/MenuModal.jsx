@@ -61,7 +61,7 @@ const MenuModal = ({ isOpenModal, closeModalMenu }) => {
           <div className="mt-1 max-w-screen-xl border-t border-solid border-gray-300 py-3 text-center text-gray-700 md:text-start"></div>
           <Link to="/create-trip" className="LI">Create Trip</Link>
           <div className="mt-1 max-w-screen-xl border-t border-solid border-gray-300 py-3 text-center text-gray-700 md:text-start"></div>
-          <li className="LI">Settings</li>
+          <Link to="/settings" className="LI">settings</Link>
           <div className="mt-1 max-w-screen-xl border-t border-solid border-gray-300 py-3 text-center text-gray-700 md:text-start" onClick={handleSignout}></div>
           {/* <Link to="/profile" className="LI">LogOut</Link> */}
           <li className="LI" onClick={handleSignout}>LogOut</li>
