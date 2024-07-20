@@ -5,6 +5,15 @@
   font-family: Arial, sans-serif;
 }
 
+.loader-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+
 .meal-preferences-container {
   flex: 1;
   padding: 20px;

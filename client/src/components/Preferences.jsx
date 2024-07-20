@@ -9,6 +9,8 @@ import markerShadowPng from 'leaflet/dist/images/marker-shadow.png';
 import axios from 'axios';
 import FinalPlannedTrip from './FinalPlannedTrip';
 import { setSelectedHotel } from '../redux/hotelSelection/hotelSlice';
+import loaderJson from './styles/images/Animation - 1721291379782.json'; 
+import Lottie from 'react-lottie';
 
 // Define custom marker icons
 const markerIcon = new L.Icon({
@@ -47,6 +49,8 @@ const Preferences = () => {
   const [destIds, setDestIds] = useState({});
   const [hotelLocations, setHotelLocations] = useState([]);
   const [selectedHotel, setSelectedHotel] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isFetchingHotels, setIsFetchingHotels] = useState(false);
 
   const handleHotelSelect = (hotel) => {
     if(hotel.hotel_id === selectedHotel){
@@ -73,16 +77,22 @@ const Preferences = () => {
   };
 
   const handleNextClick = () => {
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     if (currentIndex === 0) {
       // Move from Meal Preference to the first destination
       setCurrentIndex(1);
     } else if (currentIndex < destinations.length) {
+      setHotels([]);
+      setIsFetchingHotels(true);
       // Move through destinations
       setCurrentIndex(currentIndex + 1);
     } else {
       // Show Hotels after the last destination
       setShowHotels(true);
     }
+    
   };
 
   useEffect(() => {
@@ -208,6 +218,7 @@ const Preferences = () => {
     }
   
     try {
+      setIsLoading(true);
       const response = await axios.get('/api/hotels', {
         params: {
           dest_id,
@@ -225,11 +236,27 @@ const Preferences = () => {
       setHotelLocations(hotelCoords);
     } catch (error) {
       console.error('Error fetching hotels:', error);
+    }finally {
+      setIsLoading(false); // Stop loading
     }
+  };
+
+  const loaderOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: loaderJson,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+    },
   };
 
   return (
     <div className="container">
+      {isLoading && (
+        <div className="loader-container">
+          <img src={loaderJson} alt="Loading..." />
+        </div>
+      )}
       {!showHotels ? (
       <div className="map-container">
         {location ? (
@@ -365,7 +392,7 @@ const Preferences = () => {
                     </div>
                   ))
                 ) : (
-                  <p>Loading hotels...</p>
+                  <Lottie options={loaderOptions} height={150} width={150} />
                 )}
               </div>
 
