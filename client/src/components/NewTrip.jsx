@@ -10,6 +10,7 @@ import { setTripDestinations } from '../redux/trip/tripActions';
 import { geocodeCity } from './geocode.js'; // Import the geocoding utility
 
 const NewTrip = () => {
+  const [tripName, setTripName] = useState(''); // Added state for trip name
   const [destinations, setDestinations] = useState([{ city: '', dates: { start: '', end: '' } }]);
   const [activities, setActivities] = useState([]);
   const [people, setPeople] = useState(1);
@@ -70,7 +71,7 @@ const NewTrip = () => {
 
       const data = {
         user_id: currentUser._id, // Ensure this is a valid ObjectId
-        trip_name: "My Trip", // Optionally include a trip name
+        trip_name: tripName, // Added trip_name to data
         destinations: formattedDestinations,
         activities,
         peopleCount: people,
@@ -109,6 +110,15 @@ const NewTrip = () => {
       <br />
       <div className="form-container">
         <h1 className='H3'>Plan your next adventure</h1>
+        <div className="TripName">
+          <label>Trip Name :</label>
+          <input 
+            type="text"
+            placeholder="Enter a Name that describes a trip" 
+            value={tripName}
+            onChange={(e) => setTripName(e.target.value)} // Set trip name
+          />
+        </div>
         {destinations.map((destination, index) => (
           <div key={index} className="destination">
             {destinations.length > 1 && index > 0 && <FontAwesomeIcon icon={faLink} className='chain-symbol' />}

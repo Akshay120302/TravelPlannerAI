@@ -164,7 +164,7 @@ app.use(cookieParser());
 // ROUTES
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
-app.use('/api/trip', tripRouter); // Ensure this is correctly mapped
+app.use('/api/trip', tripRouter); 
 app.use('/api/chatbot', chatBotHandler);
 
 app.use(express.static(path.join(__dirname, '..', 'client', 'dist')));

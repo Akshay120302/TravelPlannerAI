@@ -34,7 +34,7 @@
     box-shadow: rgba(0, 0, 82, 0.15) 0 2px 4px;
     overflow: hidden;
     height: 40px;
-    position: fixed;
+    position: absolute;
 }
 
 .input-container input {

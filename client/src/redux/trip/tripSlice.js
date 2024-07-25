@@ -2,6 +2,7 @@ import { createSlice, createAction } from '@reduxjs/toolkit';
 
 // Define the new action
 export const setTripDestinations = createAction('trip/setTripDestinations');
+export const deleteTripDestinations = createAction('trip/deleteTripDestinations');
 
 const initialState = {
     trip: null,
@@ -28,9 +29,12 @@ const tripSlice = createSlice({
         },
     },
     extraReducers: (builder) => {
-        // Add the new action to the extra reducers
+        // Add the new actions to the extra reducers
         builder.addCase(setTripDestinations, (state, action) => {
             state.destinations = action.payload;
+        });
+        builder.addCase(deleteTripDestinations, (state, action) => {
+            state.destinations = []; // Clear the destinations array
         });
     },
 });

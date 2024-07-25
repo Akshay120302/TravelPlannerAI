@@ -1,5 +1,6 @@
 import express from 'express';
-import { createTrip, getListing, getTripOptions } from '../controllers/Trip.controller.js';
+import { createTrip, deleteTrip, getListing, getTrip, getTripOptions } from '../controllers/Trip.controller.js';
+import { verifyToken } from '../utils/verifyUser.js';
 
 const router = express.Router();
 
@@ -10,6 +11,8 @@ router.post('/create', createTrip);
 router.get('/accommodations', getTripOptions('accommodations'));
 router.get('/flights', getTripOptions('flights'));
 router.get('/restaurants', getTripOptions('restaurants'));
-router.get('/get/:id', getListing);
+router.get('/get/', getListing);
+router.get('/get/:_id', getTrip);
+router.delete('/delete/:_id', verifyToken, deleteTrip);
 
 export default router;

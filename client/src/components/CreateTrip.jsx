@@ -66,11 +66,10 @@ const CreateTrip = () => {
           </div>
           {Listings && Listings.length > 0 ? (
             <>
-              <div className="mt-8 flex flex-wrap gap-4">
+              <div className="mt-8 mb-8 flex flex-wrap gap-4">
               {Listings.map((listing) => (
                 <ListingItem listing={listing} key={listing._id} />
               ))}
-                {console.log(Listings)}
               </div>
             </>
           ) : (

@@ -15,6 +15,7 @@ import Preferences from "./components/Preferences";
 import Chatbot from "./components/Chatbot";
 import FinalPlannedTrip from "./components/FinalPlannedTrip";
 import Settings from "./components/Setting";
+import Listing from "./components/Listing";
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
           <Route path="/finaltrip" element = {<FinalPlannedTrip/>}/>
           <Route path="/preferences" element={<Preferences/>}/>
           <Route path="/settings" element={<Settings/>}/>
+          <Route path="/listing/:_id" element={<Listing/>}/>
           {/* <Route path="/tripCreate" element={<TripCreate />} /> */}
           <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
