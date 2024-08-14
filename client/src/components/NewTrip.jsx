@@ -52,9 +52,12 @@ const NewTrip = () => {
     const newDestinations = destinations.filter((_, i) => i !== index);
     setDestinations(newDestinations);
   };
-
+//test
+const [check, setCheck] = useState(0);
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent form submission
+    e.stopPropagation();
+
     try {
       const formattedDestinations = await Promise.all(
         destinations.map(async (dest) => {
@@ -85,17 +88,19 @@ const NewTrip = () => {
         },
         body: JSON.stringify(data)
       });
-
+      
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
+      response? setCheck(1) : setCheck(22)
+
       const result = await response.json();
       console.log('Trip created successfully:', result);
-
+      
+      result? setCheck(2) : setCheck(22)
       // Dispatch destinations to Redux store
       dispatch(setTripDestinations(formattedDestinations));
-
       // Navigate to Preferences page
       navigate('/preferences');
     } catch (error) {
@@ -192,7 +197,8 @@ const NewTrip = () => {
           </div>
         )}
 
-<button type="submit" onClick={handleSubmit} onTouchEnd={handleSubmit} className="create-trip-button">Create New Trip</button>
+<button type="submit" onClick={handleSubmit} onTouchEnd={handleSubmit} style={{zIndex: 101}} className="create-trip-button">Create New Trip</button>
+<p>{check}</p>
         <p className="terms-conditions">
           By clicking Create New Trip, you agree to our <a href="/terms">Terms and Conditions</a> and <a href="/privacy">Privacy Policy</a>.
         </p>

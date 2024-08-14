@@ -88,7 +88,7 @@ const Navbar = () => {
                     </>
                   ) : (
                     <Link
-                      className="h-fit cursor-pointer rounded-full bg-black px-5 py-1.5 !text-white"
+                      className="h-fit cursor-pointer rounded-full bg-black px-5 py-1.5 !text-white ml-[-6px]"
                       to="./signin"
                     >
                       Sign In
