@@ -189,14 +189,15 @@ const Profile = () => {
           {loading ? "Loading..." : "Update"}
         </button>
       </form>
-      <div className="flex justify-between mt-5" style={{gap:'12pc'}}>
+      <div className="flex justify-between mt-5" style={{gap:'5pc' , padding:'20px' , width:'86%'}}>
         <span
           onClick={handleDeleteUser}
           className="text-red-700 cursor-pointer"
+          style={{textWrap:'nowrap'}}
         >
           Delete Account
         </span>
-        <span onClick={handleSignout} className="text-red-700 cursor-pointer">
+        <span onClick={handleSignout} className="text-red-700 cursor-pointer" style={{textWrap:'nowrap'}}>
           Sign Out
         </span>
       </div>

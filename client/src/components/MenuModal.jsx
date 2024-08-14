@@ -1,21 +1,19 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import "./styles/MenuOver.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
-// import { Link } from 'react-router-dom';
+import { useDispatch } from "react-redux";
 import {
   deleteUserFailure,
   signOutUserFailure,
   signOutUserStart,
   signOutUserSuccess,
 } from "../redux/user/userSlice.js";
-import { useDispatch } from "react-redux";
 
 const MenuModal = ({ isOpenModal, closeModalMenu }) => {
-
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
+  const modalRef = useRef(null);
 
   const handleSignout = async () => {
     try {
@@ -29,16 +27,27 @@ const MenuModal = ({ isOpenModal, closeModalMenu }) => {
       dispatch(signOutUserSuccess(data));
     } catch (error) {
       dispatch(signOutUserFailure(error.message));
+    } finally {
+      navigate('/');
     }
-    finally {
-    // Redirect to the home page
-    navigate('/');
-  }
-
   };
 
+  const handleClickOutside = (e) => {
+    if (modalRef.current && !modalRef.current.contains(e.target)) {
+      closeModalMenu();
+    }
+  };
 
-  const modalRef = useRef(null);
+  useEffect(() => {
+    if (isOpenModal) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpenModal]);
 
   const handleMouseLeave = (e) => {
     if (!modalRef.current.contains(e.relatedTarget)) {
@@ -50,11 +59,11 @@ const MenuModal = ({ isOpenModal, closeModalMenu }) => {
 
   return (
     <div className="m-overlay" onMouseLeave={handleMouseLeave}>
-      <div className="md" ref={modalRef} onMouseLeave={handleMouseLeave}>
+      <div className="md" ref={modalRef}>
         <div className="bodyModal">
           <ul className="UL" />
           <Link to="/profile">
-          <li className="LI">Profile</li>
+            <li className="LI">Profile</li>
           </Link>
           <div className="mt-1 max-w-screen-xl border-t border-solid border-gray-300 py-3 text-center text-gray-700 md:text-start"></div>
           <li className="LI">Dashboard</li>
@@ -62,8 +71,7 @@ const MenuModal = ({ isOpenModal, closeModalMenu }) => {
           <Link to="/create-trip" className="LI">Create Trip</Link>
           <div className="mt-1 max-w-screen-xl border-t border-solid border-gray-300 py-3 text-center text-gray-700 md:text-start"></div>
           <Link to="/settings" className="LI">Settings</Link>
-          <div className="mt-1 max-w-screen-xl border-t border-solid border-gray-300 py-3 text-center text-gray-700 md:text-start" onClick={handleSignout}></div>
-          {/* <Link to="/profile" className="LI">LogOut</Link> */}
+          <div className="mt-1 max-w-screen-xl border-t border-solid border-gray-300 py-3 text-center text-gray-700 md:text-start"></div>
           <li className="LI" onClick={handleSignout}>LogOut</li>
           <ul />
         </div>

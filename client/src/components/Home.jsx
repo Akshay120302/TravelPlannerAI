@@ -76,7 +76,7 @@ const Home = () => {
       </div>
       <br />
       <div className="hero-section">
-        <h1>Your Next Journey, Optimized</h1>
+        <h2>Your Next Journey, Optimized</h2>
       </div>
       <div className="para">
         <p>
@@ -153,10 +153,10 @@ const Home = () => {
       <PartTwo />
       <Partthree />
       {/* Part four */}
-      <div className="bg-background py-12">
+      <div className="bg-background">
         <div className="mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-base tracking-wide font-light text-purple-300 mt-24">
+            <h2 className="text-base tracking-wide font-light text-purple-300 mt-2">
               TRIP PLANNER AI
             </h2>
             <br />

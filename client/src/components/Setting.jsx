@@ -21,6 +21,15 @@ import {
 import Navbar from "./Navbar.jsx";
 
 const Settings = () => {
+
+  const formStyle = {};
+
+  if (window.innerWidth <= 600) {
+    formStyle.flexDirection = 'row';
+    formStyle.flexWrap = 'wrap';
+    formStyle.justifyContent = 'center';
+  }
+
   const { currentUser, loading, error } = useSelector((state) => state.user);
   const fileRef = useRef(null);
   const [file, setFile] = useState(undefined);
@@ -143,7 +152,7 @@ const Settings = () => {
       <div className="p-3 mx-auto gap-y-4 flex flex-col items-center justify-center">
         <h1 className="text-3xl font-semibold text-center my-14">Settings</h1>
         <div className="flex items-center justify-center w-[90%] border p-3 rounded-lg">
-          <form onSubmit={handleSubmit} className="flex flex-row gap-4">
+          <form onSubmit={handleSubmit} className="flex flex-row gap-4" style={formStyle}>
             <input
               type="file"
               onChange={(e) => setFile(e.target.files[0])}

@@ -250,6 +250,55 @@ const Preferences = () => {
     },
   };
 
+  useEffect(() => {
+    if (navigator.permissions) {
+      navigator.permissions.query({ name: 'geolocation' }).then(permissionStatus => {
+        if (permissionStatus.state === 'granted') {
+          // Permission is granted
+          getLocation();
+        } else if (permissionStatus.state === 'denied') {
+          // Permission is denied
+          alert("Location permission has been denied. Please enable it in your browser settings to continue.");
+        } else if (permissionStatus.state === 'prompt') {
+          // Permission is prompted
+          getLocation();
+        }
+  
+        // Handle changes to the permission status
+        permissionStatus.onchange = () => {
+          if (permissionStatus.state === 'granted') {
+            getLocation();
+          } else if (permissionStatus.state === 'denied') {
+            alert("Location permission has been denied. Please enable it in your browser settings to continue.");
+          }
+        };
+      });
+    } else {
+      // Fallback if navigator.permissions is not available
+      getLocation();
+    }
+  }, [location, currentIndex]);
+  
+  const getLocation = () => {
+    if (navigator.geolocation && !location && currentIndex === 0) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const { latitude, longitude } = position.coords;
+        setLocation([latitude, longitude]);
+  
+        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`)
+          .then(response => response.json())
+          .then(data => {
+            setPlaceName(data.display_name);
+          })
+          .catch(error => console.error('Error fetching place name:', error));
+      }, (error) => {
+        if (error.code === error.PERMISSION_DENIED) {
+          alert("Location permission denied. Please enable it to continue.");
+        }
+      });
+    }
+  };
+
   return (
     <div className="container">
       {isLoading && (

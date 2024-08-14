@@ -61,3 +61,26 @@ p#oneLiner{
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+@media only screen and (max-width: 600px) {
+    .block3 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 3px;
+        min-width: fit-content;
+    }
+
+    .first,.second,.third {
+        border-color: aqua;
+        border-width: 2px;
+        width: fit-content;
+        height: fit-content;
+        margin-top: 0px;
+    }
+
+    #oneLiner{
+        text-align: center;
+    }
+}

@@ -91,7 +91,39 @@
   padding: 3px 0px 3px 3px !important;
 }
 
+@media only screen and (max-width: 600px)  {
+  .map-chat-container-FT {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap-reverse;
+    flex-direction: column;
+}
 
+.LeftHalf {
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+}
+
+.final-planned-trip-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: max-content;
+}
+
+.map-container-FT {
+  height: 300px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.vertical-timeline {
+  margin-top: -64px;
+}
+}
 
 
   
