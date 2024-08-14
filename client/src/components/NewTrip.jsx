@@ -71,7 +71,7 @@ const [check, setCheck] = useState(0);
           };
         })
       );
-
+      setCheck(110);
       const data = {
         user_id: currentUser._id, // Ensure this is a valid ObjectId
         trip_name: tripName, // Added trip_name to data
@@ -80,7 +80,7 @@ const [check, setCheck] = useState(0);
         peopleCount: people,
         travelType
       };
-
+      setCheck(115)
       const response = await fetch('http://localhost:8000/api/trip/create', {
         method: 'POST',
         headers: {
@@ -88,7 +88,7 @@ const [check, setCheck] = useState(0);
         },
         body: JSON.stringify(data)
       });
-      setCheck(105);
+      setCheck(150);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
