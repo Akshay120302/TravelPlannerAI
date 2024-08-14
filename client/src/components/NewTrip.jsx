@@ -192,7 +192,7 @@ const NewTrip = () => {
           </div>
         )}
 
-        <button type="submit" onClick={handleSubmit} className="create-trip-button">Create New Trip</button>
+<button type="submit" onClick={handleSubmit} onTouchEnd={handleSubmit} className="create-trip-button">Create New Trip</button>
         <p className="terms-conditions">
           By clicking Create New Trip, you agree to our <a href="/terms">Terms and Conditions</a> and <a href="/privacy">Privacy Policy</a>.
         </p>
