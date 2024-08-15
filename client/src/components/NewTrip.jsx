@@ -57,7 +57,7 @@ const [check, setCheck] = useState(0);
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent form submission
     e.stopPropagation();
-    setCheck(101)
+    // setCheck(101)
     try {
       const formattedDestinations = await Promise.all(
         destinations.map(async (dest) => {
@@ -105,7 +105,7 @@ const [check, setCheck] = useState(0);
       navigate('/preferences');
     } catch (error) {
       console.error('Error creating trip:', error);
-      setCheck(201)
+      // setCheck(201)
     }
   };
 
