@@ -56,7 +56,7 @@ const NewTrip = () => {
 const [check, setCheck] = useState(0);
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent form submission
-    e.stopPropagation();
+    // e.stopPropagation();
     // setCheck(101)
     try {
       const formattedDestinations = await Promise.all(
@@ -81,11 +81,12 @@ const [check, setCheck] = useState(0);
         travelType
       };
       setCheck(115)
-      const response = await fetch('http://localhost:8000/api/trip/create', {
+      const response = await fetch('/api/trip/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
+        credentials: "include",
         body: JSON.stringify(data)
       });
       setCheck(150);

@@ -16,6 +16,7 @@ import "react-vertical-timeline-component/style.min.css";
 import Chatbot from "./Chatbot";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import TripCreate from "./TripCreate";
 
 const EventCard = ({ dest }) => (
   <VerticalTimelineElement
@@ -46,6 +47,9 @@ const FinalPlannedTrip = () => {
   const [placeName, setPlaceName] = useState("");
   const [weatherData, setWeatherData] = useState(null);
   const [airQualityData, setAirQualityData] = useState(null);
+  const [showReviewPage, setShowReviewPage] = useState(false);
+
+  const closeReview = () => setShowReviewPage(false);
 
   const fetchWeatherData = async (latitude, longitude) => {
     try {
@@ -129,9 +133,10 @@ const FinalPlannedTrip = () => {
             ))}
           </VerticalTimeline>
           <div className="flex justify-center items-start h-['max-content'] mt-10">
-            <button className="w-[20%] h-['max-content'] rounded-full border-2 border-gray-500 bg-red-700 !text-white hover:bg-red-900">
+            <button className="w-[20%] h-['max-content'] rounded-full border-2 border-gray-500 bg-red-700 !text-white hover:bg-red-900" onClick={()=>{setShowReviewPage(true)}}>
               End Trip
             </button>
+            {showReviewPage && (<TripCreate showReviewPage={showReviewPage} closeReview = {closeReview}/>)}
           </div>
         </div>
       </motion.div>

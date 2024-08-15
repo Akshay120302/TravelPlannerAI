@@ -27,6 +27,18 @@ const tripSlice = createSlice({
             state.error = action.payload;
             state.loading = false;
         },
+        deleteTripStart: (state) => {
+            state.loading = true;
+        },
+        deleteTripSuccess: (state) => {
+            state.currentUser = null;
+            state.loading = false;
+            state.error = null;
+        },
+        deleteTripFailure: (state, action) => {
+            state.error = action.payload;
+            state.loading = false;
+        },
     },
     extraReducers: (builder) => {
         // Add the new actions to the extra reducers
@@ -39,6 +51,6 @@ const tripSlice = createSlice({
     },
 });
 
-export const { createTripStart, createTripSuccess, createTripFailure } = tripSlice.actions;
+export const { createTripStart, createTripSuccess, createTripFailure, deleteTripFailure, deleteTripStart, deleteTripSuccess } = tripSlice.actions;
 
 export default tripSlice.reducer;

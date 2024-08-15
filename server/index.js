@@ -156,7 +156,12 @@ app.get('/api/hotels', async (req, res) => {
 });
 
 // Use CORS middleware
-app.use(cors());
+app.use(cors({
+  origin: ['http://172.16.2.56:8888','http://localhost:8888', 'https://travelplannerai.onrender.com'],
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization'], // Add other necessary headers
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Add other necessary methods
+}));
 
 app.use(express.json());
 app.use(cookieParser());
