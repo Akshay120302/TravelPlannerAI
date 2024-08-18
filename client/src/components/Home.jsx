@@ -231,6 +231,7 @@ const Home = () => {
       {/* Part five */}
 
       {/* Part six */}
+      <br />
       <div className="flex flex-col items-center">
         <div className="mb-3">
           <h3 className="px-6 text-center text-3xl font-bold md:text-4xl lg:px-12 xl:text-5xl">
