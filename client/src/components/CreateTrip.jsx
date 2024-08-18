@@ -103,7 +103,7 @@ const CreateTrip = () => {
                       onClick={handleTrip}
                       className="New-trip-btn"
                       style={{
-                        width: "40%",
+                        width: "80%",
                         display: "flex",
                         alignSelf: "center",
                         justifySelf: "center",
