@@ -22,7 +22,9 @@ const Footer = () => {
             {/* ii div */}
             <div className="mt-4 flex flex-col gap-5">
               <p className="max-w-[23rem] text-center text-gray-600 md:text-start">
+                <h3>
                 Turn your next trip into a hassle-free experience with Travel Assistant AI.
+                </h3>
               </p>
             </div>
           </div>
@@ -32,12 +34,16 @@ const Footer = () => {
               <li className="font-bold">Legal</li>
               <li>
                 <a className="hover:underline" href="/terms">
+                <h3>
                   Terms & Conditions
+                  </h3>
                 </a>
               </li>
               <li>
                 <a className="hover:underline" href="/privacy">
+                <h3>
                   Privacy Policy
+                  </h3>
                 </a>
               </li>
             </ul>
@@ -45,12 +51,16 @@ const Footer = () => {
               <li className="font-bold">Support</li>
               <li>
                 <a className="hover:underline" href="/terms">
+                <h3>
                   Contact Us
+                  </h3>
                 </a>
               </li>
               <li>
                 <a className="hover:underline" href="/privacy">
+                <h3>
                   B2B Integrations
+                  </h3>
                 </a>
               </li>
             </ul>
@@ -58,12 +68,16 @@ const Footer = () => {
               <li className="font-bold">Itineraries</li>
               <li>
                 <a className="hover:underline" href="/terms">
+                <h3>
                   Community Trips
+                  </h3>
                 </a>
               </li>
               <li>
                 <a className="hover:underline" href="/privacy">
+                <h3>
                   Find Destinations
+                  </h3>
                 </a>
               </li>
             </ul>
@@ -72,7 +86,9 @@ const Footer = () => {
         {/* 2nd div */}
         <div className="mx-auto mt-12 max-w-screen-xl border-t border-solid border-gray-300 py-7 text-center text-gray-600 md:text-start">
           <p>
+            <h3>
             © 2023 Travel Assistant AI. All rights reserved
+            </h3>
           </p>
         </div>
       </footer>

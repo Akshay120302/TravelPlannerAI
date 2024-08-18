@@ -1,5 +1,6 @@
 #Part2Container {
-    margin-top: 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
     width: 100%;
     height: max-content;
     display: flex;
@@ -56,7 +57,7 @@ span.first2{
     justify-content: center;
     margin-right: 50px;
     /* width: 30%; */
-    height: 100%;
+    height: 200px;
     background-image: url('https://tripplanner.ai/_next/image?url=%2Fillustrations%2Fmap.webp&w=256&q=75');
     background-size: contain; /* Cover the entire container */
     background-position: center; /* Center the image */
@@ -66,9 +67,8 @@ span.first2{
 div.second1{
     display: flex;
     justify-content: flex-end;
-    margin-right: 50px;
     /* width: 30%; */
-    height: 100%;
+    height: 200px;
     background-image: url('https://tripplanner.ai/_next/image?url=%2Fillustrations%2Fdestinations2.webp&w=256&q=75');
     background-size: contain; /* Cover the entire container */
     background-position: center; /* Center the image */
@@ -119,7 +119,7 @@ h2 span.H2 {
         display: flex;
         justify-content: center;
         width: 100%;
-        height: 196px;
+        height: 130px;
         background-image: url(https://tripplanner.ai/_next/image?url=%2Fillustrations%2Fdestinations2.webp&w=256&q=75);
         background-size: contain;
         background-position: center;
@@ -154,9 +154,8 @@ h2 span.H2 {
     span.first2 {
         display: flex;
         justify-content: center;
-        margin-right: 50px;
         width: 100%;
-        height: 200px;
+        height: 130px;
         background-image: url(https://tripplanner.ai/_next/image?url=%2Fillustrations%2Fmap.webp&w=256&q=75);
         background-size: contain;
         background-position: center;
@@ -178,5 +177,9 @@ h2 span.H2 {
     .block2{
         display: flex;
         flex-direction: column-reverse;
+    }
+
+    h2 span.H2 {
+        font-size: 18px;
     }
 }

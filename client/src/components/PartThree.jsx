@@ -17,51 +17,56 @@ const Partthree = () => {
               <div className="userProfile">
                 <img src="#" alt="1" className="userPic" />
                 <div className="userName">
-                  <p>User Name</p>
-                  <p>Designation</p>
+                  <p><h3>User Name</h3></p>
+                  <p><h3>Designation</h3></p>
                 </div>
               </div>
               <br />
               <div className="stars">*****</div>
               <div className="userReview">
+                <h4>
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi
                 et veniam laborum id ducimus. Quidem dolore aliquam, recusandae
                 eaque necessitatibus magni. Excepturi provident laboriosam
                 voluptates soluta corporis vitae tempore dolorem!
+                </h4>
               </div>
             </span>
             <span className="second">
               <div className="userProfile">
                 <img src="#" alt="1" className="userPic" />
                 <div className="userName">
-                  <p>User Name</p>
-                  <p>Designation</p>
+                  <p><h3>User Name</h3></p>
+                  <p><h3>Designation</h3></p>
                 </div>
               </div>
               <br />
               <div className="stars">*****</div>
               <div className="userReview">
+                <h4>
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi
                 et veniam laborum id ducimus. Quidem dolore aliquam, recusandae
                 eaque necessitatibus magni. Excepturi provident laboriosam
                 voluptates soluta corporis vitae tempore dolorem!
+                </h4>
               </div>
             </span>
             <span className="third">
               <div className="userProfile">
                 <img src="#" alt="1" className="userPic" />
                 <div className="userName">
-                  <p>User Name</p>
-                  <p>Designation</p>
+                  <p><h3>User Name</h3></p>
+                  <p><h3>Designation</h3></p>
                 </div>
               </div>
               <br />
               <div className="stars">*****</div>
-              <div className="userReview">
+              <div className="userReview"><h4>
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi
                 et veniam laborum id ducimus. Quidem dolore aliquam, recusandae
                 eaque necessitatibus magni. Excepturi provident laboriosam
                 voluptates soluta corporis vitae tempore dolorem!
+                </h4>
               </div>
             </span>
           </div>

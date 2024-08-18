@@ -76,7 +76,7 @@ const Home = () => {
       </div>
       <br />
       <div className="hero-section">
-        <h2>Your Next Journey, Optimized</h2>
+        <h1>Your Next Journey, Optimized</h1>
       </div>
       <div className="para">
         <p>
@@ -150,6 +150,8 @@ const Home = () => {
       <h1>Your <span>AI-Powered</span> Trip</h1>
     </div> */}
 
+    <br />
+
       <PartTwo />
       <Partthree />
       {/* Part four */}
@@ -164,9 +166,11 @@ const Home = () => {
               The <span>only tool</span> you'll ever need!
             </h3>
             <p className="mx-auto mb-5 mt-10 max-w-2xl text-lg text-gray-500">
+              <h3>
               Say goodbye to the stress of planning and hello to personalized
               recommendations, efficient itineraries, and seamless dining
               experiences.
+              </h3>
             </p>
           </div>
 
@@ -303,6 +307,7 @@ const Home = () => {
           Journey Inspirations Fom Travellers
         </h2>
         <p className="mx-auto mt-10 max-w-3xl px-6 text-center text-base lg:px-12 lg:text-lg">
+          <h4>
           Dive into unique{" "}
           <a
             className="trip-itn text-accent-red-2 underline"
@@ -312,6 +317,7 @@ const Home = () => {
           </a>{" "}
           crafted by our global travelers. Find your next adventure and share
           your own journey with fellow explorers.
+          </h4>
         </p>
       </div>
 
@@ -324,10 +330,12 @@ const Home = () => {
               Every Travel Dream
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-center">
+              <h4>
               Trip Planner AI is your ultimate companion for any travel
               scenario. Whether it's a solo adventure, a family vacation, or a
               group expedition, our app tailors every aspect of your journey.
               Experience the convenience of:
+              </h4>
             </p>
           </div>
           <div className="mt-20 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -340,6 +348,7 @@ const Home = () => {
                 Route Optimization
               </h2>
               <p className="text-gray-600">
+                <h4>
                 Utilize AI for{" "}
                 <strong className="font-medium text-gray-900">
                   optimal travel routes.
@@ -347,6 +356,7 @@ const Home = () => {
                 Our app ensures a seamless journey, calculating the best paths,
                 travel times, and distances for city tours or cross-country road
                 trips.
+                </h4>
               </p>
             </div>
 
@@ -359,12 +369,14 @@ const Home = () => {
                 </span>
               </h2>
               <p className="text-gray-600">
+                <h4>
                 Simplify travel planning with our all-in-one platform. Trip
                 Planner AI consolidates hotel and flight details, manages
                 bookings, and imports tips and guides. Organize{" "}
                 <strong className="font-medium text-gray-900">
                   all trip details in one place.
                 </strong>
+                </h4>
               </p>
             </div>
 
@@ -379,9 +391,11 @@ const Home = () => {
               </h3>
 
               <p className="text-gray-600">
+                <h4>
                 Collaborate on itineraries with companions. Our real-time
                 feature makes group travel planning effortless, ensuring
                 everyone stays informed and involved in the process.
+                </h4>
               </p>
             </div>
           </div>

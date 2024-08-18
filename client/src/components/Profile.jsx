@@ -129,7 +129,7 @@ const Profile = () => {
 
   return (
     <div className="p-3 max-w-lg mx-auto" style={{ display: 'flex' , alignItems: 'center', justifyContent: 'center' , flexDirection: 'column' }}>
-      <h1 className="text-3xl font-semibold text-center my-7">Profile</h1>
+      <div className="text-3xl font-semibold text-center my-7">Profile</div>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           type="file"
