@@ -28,7 +28,7 @@
     font-weight: bold;
   }
   
-  input[type="text"], input[type="date"], input[type="email"]{
+  input[type="text"], input[type="date"], input[type="email"], input[type="password"] {
     width: -webkit-fill-available;
     padding: 10px;
     margin-bottom: 10px;

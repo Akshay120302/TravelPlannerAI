@@ -46,7 +46,7 @@ const SignUp = () => {
 
   return (
     <div className="p-3 max-w-lg mx-auto" style={{ display: 'flex' , alignItems: 'center', justifyContent: 'center' , flexDirection: 'column' }}>
-      <h1 className="text-3xl text-center font-semibold my-7">Sign Up</h1>
+      <div className="text-3xl text-center font-semibold my-7">Sign Up</div>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           type="text"
@@ -71,6 +71,7 @@ const SignUp = () => {
         />
         <button
           disabled={loading}
+          style={{width: "100%"}}
           className="bg-slate-700 !text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80 h-[45px]"
         >
           {loading ? "Loading..." : "Sign Up"}
