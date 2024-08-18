@@ -88,10 +88,12 @@ const Navbar = () => {
                     </>
                   ) : (
                     <Link
-                      className="h-fit cursor-pointer rounded-full bg-black px-5 py-1.5 !text-white ml-[-6px]"
                       to="./signin"
                     >
-                      Sign In
+                      <div className="h-[35px] w-[93px] cursor-pointer rounded-full bg-black px-5 py-1.5 !text-white ml-[-6px]">
+                        Sign In
+                      </div>
+                      
                     </Link>
                   )}
                 </div>
