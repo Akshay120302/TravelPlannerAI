@@ -79,7 +79,7 @@ const Home = () => {
         <h1>Your Next Journey, Optimized</h1>
       </div>
       <div className="para">
-        <p>
+        <p style={{padding : "10px", textAlign : "justify"}}>
           Build, personalize, and optimize your itineraries with our free AI
           trip planner. Designed for vacations, workations, and everyday
           adventures.

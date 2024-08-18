@@ -48,9 +48,9 @@ const Navbar = () => {
                   width={29}
                   height={29}
                 />
-                <h1 className="text-base/7 font-medium md:text-xl/8">
+                <div className="text-base/7 font-medium md:text-xl/8">
                   Travel Assistant AI
-                </h1>
+                </div>
               </a>
               <div className="flex">
                 <a

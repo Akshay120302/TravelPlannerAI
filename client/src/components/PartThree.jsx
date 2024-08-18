@@ -24,12 +24,12 @@ const Partthree = () => {
               <br />
               <div className="stars">*****</div>
               <div className="userReview">
-                <h4>
+                
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi
                 et veniam laborum id ducimus. Quidem dolore aliquam, recusandae
                 eaque necessitatibus magni. Excepturi provident laboriosam
                 voluptates soluta corporis vitae tempore dolorem!
-                </h4>
+                
               </div>
             </span>
             <span className="second">
@@ -43,12 +43,12 @@ const Partthree = () => {
               <br />
               <div className="stars">*****</div>
               <div className="userReview">
-                <h4>
+                
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi
                 et veniam laborum id ducimus. Quidem dolore aliquam, recusandae
                 eaque necessitatibus magni. Excepturi provident laboriosam
                 voluptates soluta corporis vitae tempore dolorem!
-                </h4>
+                
               </div>
             </span>
             <span className="third">
@@ -61,12 +61,12 @@ const Partthree = () => {
               </div>
               <br />
               <div className="stars">*****</div>
-              <div className="userReview"><h4>
+              <div className="userReview">
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi
                 et veniam laborum id ducimus. Quidem dolore aliquam, recusandae
                 eaque necessitatibus magni. Excepturi provident laboriosam
                 voluptates soluta corporis vitae tempore dolorem!
-                </h4>
+                
               </div>
             </span>
           </div>

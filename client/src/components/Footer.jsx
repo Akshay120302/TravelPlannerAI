@@ -17,7 +17,7 @@ const Footer = () => {
                 height={20}
                 className="h-9 w-9 items-center"
               />
-              <h1 className="text-2xl/10 font-medium">Travel Assistant AI</h1>
+              <div className="text-2xl/10 font-medium">Travel Assistant AI</div>
             </div>
             {/* ii div */}
             <div className="mt-4 flex flex-col gap-5">

@@ -83,4 +83,8 @@ p#oneLiner{
     #oneLiner{
         text-align: center;
     }
+
+    .userReview{
+        font-size: 11px;
+    }
 }
