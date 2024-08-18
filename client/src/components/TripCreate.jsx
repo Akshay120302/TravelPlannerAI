@@ -12,9 +12,10 @@ const TripCreate = ({ showReviewPage, closeReview }) => {
   const navigate = useNavigate();
 
   const handleReviewSubmit = () => {
-    navigate('/new-trip')
-    dispatch(deleteTripDestinations());
     closeReview();
+    navigate('/create-trip');
+    dispatch(deleteTripDestinations());
+    location.reload();
   }
 
   return (

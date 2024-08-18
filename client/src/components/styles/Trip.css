@@ -16,3 +16,12 @@
     display: flex;
     flex-direction: column-reverse;
 }
+
+@media only screen and (max-width : 600px) {
+  .CTbody{
+    margin-left : -25px;
+    width: 88%;
+  }
+  
+  
+}
