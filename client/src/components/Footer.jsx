@@ -21,11 +21,13 @@ const Footer = () => {
             </div>
             {/* ii div */}
             <div className="mt-4 flex flex-col gap-5">
+              <h3>
               <p className="max-w-[23rem] text-center text-gray-600 md:text-start">
-                <h3>
+                
                 Turn your next trip into a hassle-free experience with Travel Assistant AI.
-                </h3>
+                
               </p>
+              </h3>
             </div>
           </div>
           {/* b div */}
@@ -85,11 +87,11 @@ const Footer = () => {
         </div>
         {/* 2nd div */}
         <div className="mx-auto mt-12 max-w-screen-xl border-t border-solid border-gray-300 py-7 text-center text-gray-600 md:text-start">
-          <p>
+          
             <h3>
             © 2023 Travel Assistant AI. All rights reserved
             </h3>
-          </p>
+        
         </div>
       </footer>
   );

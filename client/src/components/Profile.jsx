@@ -47,6 +47,9 @@ const Profile = () => {
     const storageRef = ref(storage, fileName);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
+
+    const [error, setError] = useState('An error occurred');
+
     uploadTask.on(
       "state_changed",
       (snapshot) => {
@@ -127,6 +130,31 @@ const Profile = () => {
     }
   };
 
+  useEffect(() => {
+    if (updateSuccess || error) {
+      const timer = setTimeout(() => {
+        setUpdateSuccess(false);
+        setError(false);
+      }, 3000); // 3000 milliseconds = 3 seconds
+
+      // Cleanup the timer if the component is unmounted or updateSuccess changes
+      return () => clearTimeout(timer);
+    }
+  }, [updateSuccess, error]);
+
+  useEffect(() => {
+    let timer;
+    if (fileUploadError || filePercentage === 100) {
+      timer = setTimeout(() => {
+        setFileUploadError(false);
+        setFilePercentage(0);
+      }, 3000); // 3000 milliseconds = 3 seconds
+    }
+
+    // Cleanup the timer if the component is unmounted or state changes before the timeout completes
+    return () => clearTimeout(timer);
+  }, [fileUploadError, filePercentage]);
+
   return (
     <div className="p-3 max-w-lg mx-auto" style={{ display: 'flex' , alignItems: 'center', justifyContent: 'center' , flexDirection: 'column' }}>
       <div className="text-3xl font-semibold text-center my-7">Profile</div>
@@ -184,7 +212,7 @@ const Profile = () => {
         />
         <button
           disabled={loading}
-          className="bg-slate-700 !text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80 h-[45px]"
+          className="w-[100%] bg-slate-700 !text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80 h-[45px]"
         >
           {loading ? "Loading..." : "Update"}
         </button>

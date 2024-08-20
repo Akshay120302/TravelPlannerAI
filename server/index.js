@@ -6,6 +6,7 @@ import axios from 'axios';
 import userRouter from "./routes/User.route.js";
 import authRouter from "./routes/Auth.route.js";
 import tripRouter from "./routes/Trip.route.js";
+import reviewRouter from "./routes/Review.route.js";
 import { chatBotHandler } from "./controllers/Chatbot.controller.js";
 import cookieParser from 'cookie-parser';
 import path from 'path';
@@ -170,6 +171,7 @@ app.use(cookieParser());
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/trip', tripRouter); 
+app.use('/api/review', reviewRouter); 
 app.use('/api/chatbot', chatBotHandler);
 
 app.use(express.static(path.join(__dirname, '..', 'client', 'dist')));

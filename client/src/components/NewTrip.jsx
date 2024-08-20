@@ -14,7 +14,7 @@ const NewTrip = () => {
   const [destinations, setDestinations] = useState([{ city: '', dates: { start: '', end: '' } }]);
   const [activities, setActivities] = useState([]);
   const [people, setPeople] = useState(1);
-  const [travelType, setTravelType] = useState('');
+  const [travelType, setTravelType] = useState('Self');
   const { currentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();

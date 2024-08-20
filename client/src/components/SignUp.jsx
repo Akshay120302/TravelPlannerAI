@@ -37,7 +37,7 @@ const SignUp = () => {
       }
       setLoading(false);
       setError(null);
-      navigate('/create-trip');
+      navigate('/signin');
     } catch (error) {
       setLoading(false);
       setError(error.message);
