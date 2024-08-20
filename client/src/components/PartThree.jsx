@@ -26,11 +26,11 @@ const Partthree = () => {
         See what our users have to say about revolutionizing their travel
         experiences with Trip Planner AI.
       </p>
-      <div className="flex justify-center space-x-8 max-h-[400px]">
+      <div className="flex flex-wrap gap-2 align-center justify-center justify-center space-x-8">
         {topReviews.map((review, index) => (
           <div
             key={index}
-            className="w-80 p-6 border rounded-lg shadow-lg bg-white h-[400px]"
+            className="w-[100%] p-6 border rounded-lg shadow-lg bg-white h-[400px]"
           >
             <div className="flex items-center mb-4">
               <img
