@@ -47,9 +47,6 @@ const Profile = () => {
     const storageRef = ref(storage, fileName);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
-
-    const [error, setError] = useState('An error occurred');
-
     uploadTask.on(
       "state_changed",
       (snapshot) => {
@@ -131,16 +128,15 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    if (updateSuccess || error) {
+    if (updateSuccess) {
       const timer = setTimeout(() => {
         setUpdateSuccess(false);
-        setError(false);
       }, 3000); // 3000 milliseconds = 3 seconds
 
       // Cleanup the timer if the component is unmounted or updateSuccess changes
       return () => clearTimeout(timer);
     }
-  }, [updateSuccess, error]);
+  }, [updateSuccess]);
 
   useEffect(() => {
     let timer;
