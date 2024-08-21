@@ -98,10 +98,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 60%;
+
 }
 
 .image-wrapper img {
-  width: 20%;
+  width: 150px;
 }
 
 .trip-itn {

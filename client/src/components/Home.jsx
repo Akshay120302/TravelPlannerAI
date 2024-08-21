@@ -6,7 +6,6 @@ import PartTwo from "./PartTwo";
 import PartThree from "./PartThree";
 import Marquee from "react-fast-marquee";
 import Partthree from "./PartThree";
-import TripCreate from './TripCreate';
 import Pic from './styles/images/vector_art.jpg'
 import Footer from "./Footer";
 import { useSelector } from "react-redux";
@@ -200,12 +199,11 @@ const Home = () => {
                   alt="logo"
                 />
                 <p className="leading-2 max-w-[12rem] text-lg font-bold text-gray-900 md:text-xl lg:text-2xl">
-                  Optimal Route Planning
+                Personalize Your Adventure
                 </p>
               </div>
               <p className="mt-2 text-base text-gray-500 md:text-lg">
-                Our AI algorithms analyze your preferences to craft the most
-                efficient route, saving you time and effort.
+              Shape your journey by freely adding, editing, or deleting activities from your itinerary.
               </p>
             </div>
             <div className="undefined w-full flex-1 rounded-xl border border-solid border-gray-200 p-6 last:md:col-span-2 last:lg:col-span-1">
@@ -216,12 +214,11 @@ const Home = () => {
                   alt="logo"
                 />
                 <p className="leading-2 max-w-[12rem] text-lg font-bold text-gray-900 md:text-xl lg:text-2xl">
-                  Optimal Route Planning
+                Local Cuisine Recommendations
                 </p>
               </div>
               <p className="mt-2 text-base text-gray-500 md:text-lg">
-                Our AI algorithms analyze your preferences to craft the most
-                efficient route, saving you time and effort.
+              Discover local cuisines and hidden gems recommended by our AI, tailored to your taste buds.
               </p>
             </div>
           </div>
