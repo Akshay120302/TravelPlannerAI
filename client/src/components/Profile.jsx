@@ -213,7 +213,7 @@ const Profile = () => {
           {loading ? "Loading..." : "Update"}
         </button>
       </form>
-      <div className="flex justify-between mt-5" style={{gap:'5pc' , padding:'20px' , width:'86%'}}>
+      <div className="flex justify-between mt-5" style={{gap:'5pc' , padding:'20px' , width:'100%'}}>
         <span
           onClick={handleDeleteUser}
           className="text-red-700 cursor-pointer"
