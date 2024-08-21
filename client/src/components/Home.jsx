@@ -173,8 +173,8 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="mx-auto mt-10 grid h-full max-w-6xl grid-cols-1 flex-wrap items-start gap-5 md:mt-20 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
-            <div className="undefined w-full flex-1 rounded-xl border border-solid border-gray-200 p-6 last:md:col-span-2 last:lg:col-span-1">
+          <div className="mx-auto mt-10 grid h-full max-w-6xl grid-cols-1 flex-wrap items-start gap-5 md:mt-20 md:grid-cols-2 md:gap-8 lg:grid-cols-3 mb-10">
+            <div className="undefined w-full flex-1 rounded-xl border border-solid border-gray-200 p-6 last:md:col-span-2 last:lg:col-span-1 h-[250px]">
               <div className="flex items-center gap-3">
                 <img
                   src="https://tripplanner.ai/_next/image?url=%2Fillustrations%2Fmap.webp&w=384&q=75"
@@ -191,7 +191,7 @@ const Home = () => {
               </p>
             </div>
 
-            <div className="undefined w-full flex-1 rounded-xl border border-solid border-gray-200 p-6 last:md:col-span-2 last:lg:col-span-1">
+            <div className="undefined w-full flex-1 rounded-xl border border-solid border-gray-200 p-6 last:md:col-span-2 last:lg:col-span-1 h-[250px]">
               <div className="flex items-center gap-3">
                 <img
                   src="https://tripplanner.ai/_next/image?url=%2Fillustrations%2Fstory.webp&w=384&q=75"
@@ -206,7 +206,7 @@ const Home = () => {
               Shape your journey by freely adding, editing, or deleting activities from your itinerary.
               </p>
             </div>
-            <div className="undefined w-full flex-1 rounded-xl border border-solid border-gray-200 p-6 last:md:col-span-2 last:lg:col-span-1">
+            <div className="undefined w-full flex-1 rounded-xl border border-solid border-gray-200 p-6 last:md:col-span-2 last:lg:col-span-1 h-[250px]">
               <div className="flex items-center gap-3">
                 <img
                   src="https://tripplanner.ai/_next/image?url=%2Fillustrations%2Ffood.webp&w=384&q=75"
@@ -229,7 +229,7 @@ const Home = () => {
 
       {/* Part six */}
       <br />
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center gap-10">
         <div className="mb-3">
           <h3 className="px-6 text-center text-3xl font-bold md:text-4xl lg:px-12 xl:text-5xl">
             Our Trusted Partners
