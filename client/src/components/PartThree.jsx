@@ -30,7 +30,7 @@ const Partthree = () => {
         {topReviews.map((review, index) => (
           <div
             key={index}
-            className="flex flex-col justify-center align-center w-[100%] p-6 border rounded-lg shadow-lg bg-white h-[400px]"
+            className="flex flex-col justify-center align-center w-[100%] p-6 border rounded-lg shadow-lg bg-white h-[400px] !ml-[0px]"
           >
             <div className="flex items-center mb-4">
               <img
