@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from "react";
 import "./styles/MenuOver.css";
 import { Link } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import {
   deleteUserFailure,
   signOutUserFailure,
@@ -14,6 +14,8 @@ const MenuModal = ({ isOpenModal, closeModalMenu }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const modalRef = useRef(null);
+
+  const { currentUser } = useSelector((state) => state.user);
 
   const handleSignout = async () => {
     try {
@@ -28,7 +30,7 @@ const MenuModal = ({ isOpenModal, closeModalMenu }) => {
     } catch (error) {
       dispatch(signOutUserFailure(error.message));
     } finally {
-      navigate('/');
+      navigate("/");
     }
   };
 
@@ -66,13 +68,25 @@ const MenuModal = ({ isOpenModal, closeModalMenu }) => {
             <li className="LI">Profile</li>
           </Link>
           <div className="mt-1 max-w-screen-xl border-t border-solid border-gray-300 py-3 text-center text-gray-700 md:text-start"></div>
-          <li className="LI">Dashboard</li>
+          {currentUser ? (
+            <Link to={`/notifications/${currentUser._id}`}>
+              <li className="LI">Notifications</li>
+            </Link>
+          ) : (
+            <li className="LI">Notifications</li>
+          )}
           <div className="mt-1 max-w-screen-xl border-t border-solid border-gray-300 py-3 text-center text-gray-700 md:text-start"></div>
-          <Link to="/create-trip" className="LI">Create Trip</Link>
+          <Link to="/create-trip" className="LI">
+            Create Trip
+          </Link>
           <div className="mt-1 max-w-screen-xl border-t border-solid border-gray-300 py-3 text-center text-gray-700 md:text-start"></div>
-          <Link to="/settings" className="LI">Settings</Link>
+          <Link to="/settings" className="LI">
+            Settings
+          </Link>
           <div className="mt-1 max-w-screen-xl border-t border-solid border-gray-300 py-3 text-center text-gray-700 md:text-start"></div>
-          <li className="LI" onClick={handleSignout}>LogOut</li>
+          <li className="LI" onClick={handleSignout}>
+            LogOut
+          </li>
           <ul />
         </div>
       </div>

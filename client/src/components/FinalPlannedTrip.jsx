@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
+import "leaflet-routing-machine";
+import "leaflet-defaulticon-compatibility";
 import markerIconPng from "leaflet/dist/images/marker-icon.png";
 import markerShadowPng from "leaflet/dist/images/marker-shadow.png";
 import "leaflet/dist/leaflet.css";
@@ -10,7 +12,7 @@ import {
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import { motion } from "framer-motion";
-import { styles } from "../styles";
+// import { styles } from "../styles";
 import { textVariant } from "../utils/motion";
 import "react-vertical-timeline-component/style.min.css";
 import Chatbot from "./Chatbot";
@@ -152,7 +154,7 @@ const FinalPlannedTrip = () => {
     <div className="final-planned-trip-container border-t border-gray-500">
       <motion.div className="LeftHalf" variants={textVariant}>
         <p className="flex justify-center">Your Trip Planned and Ready 🥳</p>
-        <div className="flex align-center justify-center flex-row gap-2 mt-2 rounded-full border-2 border-gray-500 bg-green-700" onClick={() => setAddUser(true)}>
+        <div className="flex align-center justify-center flex-row gap-2 mt-2 rounded-full border-2 border-gray-500 bg-green-700 cursor-pointer" onClick={() => setAddUser(true)}>
           <FaUserFriends style={{backgroundColor: "green"}}/> 
           Add Users
           </div>

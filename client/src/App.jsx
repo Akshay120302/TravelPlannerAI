@@ -12,10 +12,11 @@ import PrivateRoute from "./components/PrivateRoute";
 import Profile from "./components/Profile";
 import NewTrip from "./components/NewTrip";
 import Preferences from "./components/Preferences";
-import Chatbot from "./components/Chatbot";
+// import Chatbot from "./components/Chatbot";
 import FinalPlannedTrip from "./components/FinalPlannedTrip";
 import Settings from "./components/Setting";
 import Listing from "./components/Listing";
+import Notification from "./components/Notification.jsx";
 
 const App = () => {
   return (
@@ -28,16 +29,23 @@ const App = () => {
           <Route path="/Part4" element={<PartFour />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
-          <Route path="/new-trip" element={<NewTrip />} />
+          {/* <Route path="/new-trip" element={<NewTrip />} />
           <Route path="/create-trip" element={<CreateTrip />} />
-          <Route path="/chatbot" element = {<Chatbot/>}/>
           <Route path="/finaltrip" element = {<FinalPlannedTrip/>}/>
           <Route path="/preferences" element={<Preferences/>}/>
           <Route path="/settings" element={<Settings/>}/>
           <Route path="/listing/:_id" element={<Listing/>}/>
+          <Route path="/notifications/:_id" element={<Notification/>}/> */}
           {/* <Route path="/tripCreate" element={<TripCreate />} /> */}
           <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
+          <Route path="/new-trip" element={<NewTrip />} />
+          <Route path="/create-trip" element={<CreateTrip />} />
+          <Route path="/finaltrip" element = {<FinalPlannedTrip/>}/>
+          <Route path="/preferences" element={<Preferences/>}/>
+          <Route path="/settings" element={<Settings/>}/>
+          <Route path="/listing/:_id" element={<Listing/>}/>
+          <Route path="/notifications/:_id" element={<Notification/>}/>
           </Route>
         </Routes>
       </Router>
