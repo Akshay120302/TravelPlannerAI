@@ -133,6 +133,8 @@ const Chatbot = ({ weatherData, airQualityData }) => {
         },
       ]);
       setValue("");
+      console.log("Sending to /api/chatbot/gemini:", { history: chatHistory, message: value });
+
     } catch (error) {
       console.error("Error in getResponse:", error);
       setError("Something went wrong! Please try again later.");
@@ -150,6 +152,60 @@ const Chatbot = ({ weatherData, airQualityData }) => {
       getResponse();
     }
   };
+
+  const saveChatHistory = async () => {
+    getResponse();
+    try {
+      await fetch("/api/chatbot/history", {
+        method: "POST",
+        body: JSON.stringify({ chatHistory }),
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "include", // Ensure cookies are sent with the request
+      });
+      console.log(body);
+    } catch (error) {
+      console.error("Failed to save chat history:", error);
+    }
+  };
+  
+  useEffect(() => {
+    // Save chat history on component unmount
+    return () => {
+      if (currentUser) {
+        saveChatHistory();
+      }
+    };
+  }, [chatHistory, currentUser]);
+
+  useEffect(() => {
+    const fetchChatHistory = async () => {
+      if (currentUser) {
+        try {
+          const response = await fetch("/api/chatbot/history", {
+            method: "GET",
+            credentials: "include",
+          });
+
+          console.log(response);
+  
+          if (response.ok) {
+            const data = await response.json();
+            if (data.chatHistory) {
+              setChatHistory(data.chatHistory);
+            }
+          } else {
+            console.error("Failed to fetch chat history");
+          }
+        } catch (error) {
+          console.error("Error fetching chat history:", error);
+        }
+      }
+    };
+  
+    fetchChatHistory();
+  }, [currentUser]);
 
   return (
     <div className="chat_bot">

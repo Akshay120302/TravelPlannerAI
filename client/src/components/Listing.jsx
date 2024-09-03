@@ -54,6 +54,10 @@ export default function Listing() {
     }
   };
 
+  const currentTrip = () => {
+    navigate("/finaltrip")
+  }
+
   return (
     <main className="flex flex-col align-center container mx-auto p-6">
       {copied && <span className="text-sm text-green-500">Link copied!</span>}
@@ -117,7 +121,7 @@ export default function Listing() {
           </button>
           <button
             className="rounded-full border-2 border-gray-500 bg-green-700 !text-white hover:bg-green-900"
-            onClick={deleteTrip}
+            onClick={currentTrip}
           >
             Goto Trip
           </button>

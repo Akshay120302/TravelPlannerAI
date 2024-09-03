@@ -17,6 +17,11 @@ import Chatbot from "./Chatbot";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import TripCreate from "./TripCreate";
+import Navbar from "./Navbar";
+import {
+  FaUserFriends
+} from "react-icons/fa";
+import AddUser from "./AddUser";
 
 const EventCard = ({ dest }) => (
   <VerticalTimelineElement
@@ -48,6 +53,7 @@ const FinalPlannedTrip = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [airQualityData, setAirQualityData] = useState(null);
   const [showReviewPage, setShowReviewPage] = useState(false);
+  const [error, setError] = useState("");
 
   const closeReview = () => setShowReviewPage(false);
 
@@ -119,10 +125,38 @@ const FinalPlannedTrip = () => {
     return null;
   };
 
+  const [addUser , setAddUser] = useState(false);
+
+  const handleAddUser = async (e) => {
+    e.preventDefault();
+    try {
+      // Replace with your API endpoint
+      const response = await axios.post('/api/add-user', formData);
+      // Handle successful response
+      console.log(response.data);
+      setAddUser(false); // Close the modal on success
+    } catch (err) {
+      // Handle error response
+      console.error(err);
+      setError("Failed to add user. Please try again.");
+    }
+  };
+
   return (
-    <div className="final-planned-trip-container">
+    <>
+    <div className="mb-10">
+    <Navbar/>
+
+    </div>
+    <br />
+    <div className="final-planned-trip-container border-t border-gray-500">
       <motion.div className="LeftHalf" variants={textVariant}>
-        <p className={styles.sectionSubText}>Your Trip Planned and Ready 🥳</p>
+        <p className="flex justify-center">Your Trip Planned and Ready 🥳</p>
+        <div className="flex align-center justify-center flex-row gap-2 mt-2 rounded-full border-2 border-gray-500 bg-green-700" onClick={() => setAddUser(true)}>
+          <FaUserFriends style={{backgroundColor: "green"}}/> 
+          Add Users
+          </div>
+          {addUser ? <AddUser setAddUser={setAddUser} handleAddUser = {handleAddUser} error={error} />: ""}
         <div className="mt-20 flex flex-col" id="test">
           <VerticalTimeline>
             {initialLocation && (
@@ -146,7 +180,7 @@ const FinalPlannedTrip = () => {
             <MapContainer
               center={currentLocation}
               zoom={15}
-              style={{ height: "100%", width: "100%" }}
+              style={{ height: "100%", width: "100%", position: "sticky" }}
             >
               <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -179,6 +213,7 @@ const FinalPlannedTrip = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

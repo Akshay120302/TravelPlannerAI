@@ -16,6 +16,7 @@ const NewTrip = () => {
   const [people, setPeople] = useState(1);
   const [travelType, setTravelType] = useState('Self');
   const { currentUser } = useSelector((state) => state.user);
+  const [shareTravelDetail, setShareTravelDetail] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -54,6 +55,8 @@ const NewTrip = () => {
   };
 //test
 const [check, setCheck] = useState(0);
+
+
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent form submission
     // e.stopPropagation();
@@ -97,6 +100,7 @@ const [check, setCheck] = useState(0);
       response? setCheck(1) : setCheck(22)
 
       const result = await response.json();
+      setShareTravelDetail(result);
       console.log('Trip created successfully:', result);
       
       result? setCheck(2) : setCheck(22)
