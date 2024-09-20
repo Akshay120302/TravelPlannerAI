@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 
-const TripCreate = ({ showReviewPage, closeReview }) => {
+const TripCreate = ({ showReviewPage, closeReview , id }) => {
   if (!showReviewPage) return null;
 
   const dispatch = useDispatch();
@@ -36,7 +36,7 @@ const TripCreate = ({ showReviewPage, closeReview }) => {
     e.preventDefault();
     try {
       console.log("Form data to be sent:", formData);
-
+  
       const response = await fetch("/api/review/postReview", {
         method: "POST",
         headers: {
@@ -44,15 +44,19 @@ const TripCreate = ({ showReviewPage, closeReview }) => {
         },
         body: JSON.stringify(formData),
       });
-
+  
       if (!response.ok) {
         const errorData = await response.json();
         setError(errorData.message || "Failed to submit review.");
         return;
       }
-
+  
       const data = await response.json();
       console.log(data);
+  
+      // Update the trip's status to false
+      await updateTrip();
+  
       closeReview();
       navigate("/create-trip");
       dispatch(deleteTripDestinations());
@@ -62,6 +66,31 @@ const TripCreate = ({ showReviewPage, closeReview }) => {
       setError("An error occurred while submitting the review.");
     }
   };
+  
+
+  const updateTrip = async () => {
+    try {
+      const response = await fetch(`/api/trip/update/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ status: false }),
+      });
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Error updating trip status:", errorData.message);
+        return;
+      }
+  
+      const updatedTrip = await response.json();
+      console.log("Trip status updated successfully:", updatedTrip);
+    } catch (error) {
+      console.error("Error updating trip:", error);
+    }
+  };
+
 
   return (
     <>

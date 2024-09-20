@@ -14,7 +14,8 @@ const TripSchema = new Schema({
   destinations: { type: [DestinationSchema], required: true },
   activities: { type: [String], required: true },
   peopleCount: { type: Number, required: true },
-  travelType: { type: String, required: true }
+  travelType: { type: String, required: true },
+  status: {type : Boolean, default: true}
 });
 
 const Trip = mongoose.model('Trip', TripSchema);

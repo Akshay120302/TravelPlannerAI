@@ -8,6 +8,8 @@ import ListingItem from "./ListingItem";
 
 const CreateTrip = () => {
   const [Listings, setListings] = useState([]);
+  const [warning, setWarning] = useState(false);
+  const [currentListings, setCurrentListings] = useState(false);
 
   
   const navigate = useNavigate();
@@ -25,31 +27,45 @@ const CreateTrip = () => {
         const data = await res.json();
         console.log(data);
         setListings(data);
+        setCurrentListings(Listings[Listings.length].status);
       } catch (error) {
-        setShowListingsError(true);
+        console.error("Error Fetching User Listing:", error);
       }
     };
   
     handleShowListings();
   }, [currentUser._id]);
+  
 
   return (
     <>
       <div className="PageBody">
         <Navbar />
         <div className="CTbody">
+       
           <div className="mt-12 flex min-h-[47px] w-full items-center justify-between ">
             <h2 className="min-w-fit items-center text-xl font-medium md:text-2xl mt-12 ml-10">
               Your Trips
             </h2>
             <div className="btn-handler">
-              <Link to = '/new-trip'>
+              {currentListings ? (<Link to = '/new-trip'>
               <button className="New-trip-btn">
                 New Trip
               </button>
-              </Link>
+              </Link>) : (<>
+              <button className="New-trip-btn" onClick={() => {setWarning(true)}}>
+                New Trip
+              </button>
+              </>)}
+              {console.log(currentListings)}
+              {/* <Link to = '/new-trip'>
+              <button className="New-trip-btn">
+                New Trip
+              </button>
+              </Link> */}
             </div>
           </div>
+          {warning && <span className="text-sm text-green-500">You have an Ongoing Trip !! Finish the trip to create a new trip.</span>}
           {Listings && Listings.length > 0 ? (
             <>
               <div className="mt-8 mb-8 flex flex-wrap gap-4">

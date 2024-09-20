@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
-import "leaflet-routing-machine";
-import "leaflet-defaulticon-compatibility";
 import markerIconPng from "leaflet/dist/images/marker-icon.png";
 import markerShadowPng from "leaflet/dist/images/marker-shadow.png";
 import "leaflet/dist/leaflet.css";
@@ -24,6 +22,7 @@ import {
   FaUserFriends
 } from "react-icons/fa";
 import AddUser from "./AddUser";
+import { useParams } from "react-router-dom";
 
 const EventCard = ({ dest }) => (
   <VerticalTimelineElement
@@ -56,6 +55,40 @@ const FinalPlannedTrip = () => {
   const [airQualityData, setAirQualityData] = useState(null);
   const [showReviewPage, setShowReviewPage] = useState(false);
   const [error, setError] = useState("");
+
+  const { _id } = useParams();
+
+  const [tripDest, setTripDest] = useState([]);
+
+  useEffect(() => {
+
+  const fetchTripData = async (_id) => {
+    try {
+      const response = await fetch(`/api/trip/get/${_id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Failed to fetch trip data:", errorData.message);
+        return null; // Return null if there is an error
+      }
+  
+      const tripData = await response.json();
+      console.log(tripData);
+      setTripDest(tripData.destinations);
+      return tripData;
+    } catch (error) {
+      console.error("Error fetching trip data:", error);
+      return null; // Return null in case of an error
+    }
+  };
+  fetchTripData(_id);
+}, [_id]); 
+
 
   const closeReview = () => setShowReviewPage(false);
 
@@ -107,18 +140,18 @@ const FinalPlannedTrip = () => {
       });
     }
 
-    const intervalId = setInterval(() => {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const { latitude, longitude } = position.coords;
-        const newLocation = [latitude, longitude];
-        setCurrentLocation(newLocation);
-        fetchWeatherData(latitude, longitude);
-        fetchAirQualityData(latitude, longitude);
-        fetchLocationData(latitude, longitude);
-      });
-    }, 60000); // Check location every minute
+    // const intervalId = setInterval(() => {
+    //   navigator.geolocation.getCurrentPosition((position) => {
+    //     const { latitude, longitude } = position.coords;
+    //     const newLocation = [latitude, longitude];
+    //     setCurrentLocation(newLocation);
+    //     fetchWeatherData(latitude, longitude);
+    //     fetchAirQualityData(latitude, longitude);
+    //     fetchLocationData(latitude, longitude);
+    //   });
+    // }, 60000); // Check location every minute
 
-    return () => clearInterval(intervalId);
+    // return () => clearInterval(intervalId);
   }, [initialLocation]);
 
   const ChangeView = ({ center }) => {
@@ -164,7 +197,7 @@ const FinalPlannedTrip = () => {
             {initialLocation && (
               <EventCard key="initial" dest={{ start_date: "Start", location: placeName }} />
             )}
-            {destinations.map((dest, index) => (
+            {tripDest.map((dest, index) => (
               <EventCard key={index} dest={dest} />
             ))}
           </VerticalTimeline>
@@ -172,7 +205,7 @@ const FinalPlannedTrip = () => {
             <button className="w-[20%] h-['max-content'] rounded-full border-2 border-gray-500 bg-red-700 !text-white hover:bg-red-900" onClick={()=>{setShowReviewPage(true)}}>
               End Trip
             </button>
-            {showReviewPage && (<TripCreate showReviewPage={showReviewPage} closeReview = {closeReview}/>)}
+            {showReviewPage && (<TripCreate showReviewPage={showReviewPage} closeReview = {closeReview} id = {_id}/>)}
           </div>
         </div>
       </motion.div>

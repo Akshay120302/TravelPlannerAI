@@ -38,6 +38,7 @@ export default function Listing() {
     fetchListing();
   }, [params._id]);
 
+ 
   const deleteTrip = async () => {
     try {
       const res = await fetch(`/api/trip/delete/${params._id}`, {
@@ -55,7 +56,9 @@ export default function Listing() {
   };
 
   const currentTrip = () => {
-    navigate("/finaltrip")
+    if (listing && listing._id) {
+      navigate(`/finaltrip/${listing._id}`);
+    }
   }
 
   return (
@@ -119,12 +122,18 @@ export default function Listing() {
           >
             Delete Trip
           </button>
-          <button
+          {listing.status ? (<button
             className="rounded-full border-2 border-gray-500 bg-green-700 !text-white hover:bg-green-900"
             onClick={currentTrip}
           >
             Goto Trip
-          </button>
+          </button>) : ("")}
+          {/* <button
+            className="rounded-full border-2 border-gray-500 bg-green-700 !text-white hover:bg-green-900"
+            onClick={currentTrip}
+          >
+            Goto Trip
+          </button> */}
         </div>
       )}
     </main>

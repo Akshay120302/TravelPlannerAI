@@ -41,7 +41,7 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/new-trip" element={<NewTrip />} />
           <Route path="/create-trip" element={<CreateTrip />} />
-          <Route path="/finaltrip" element = {<FinalPlannedTrip/>}/>
+          <Route path="/finaltrip/:_id" element = {<FinalPlannedTrip/>}/>
           <Route path="/preferences" element={<Preferences/>}/>
           <Route path="/settings" element={<Settings/>}/>
           <Route path="/listing/:_id" element={<Listing/>}/>
