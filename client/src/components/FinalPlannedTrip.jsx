@@ -56,6 +56,8 @@ const FinalPlannedTrip = () => {
   const [showReviewPage, setShowReviewPage] = useState(false);
   const [error, setError] = useState("");
 
+  const [tripData , setTripData] = useState([]);
+
   const { _id } = useParams();
 
   const [tripDest, setTripDest] = useState([]);
@@ -80,6 +82,7 @@ const FinalPlannedTrip = () => {
       const tripData = await response.json();
       console.log(tripData);
       setTripDest(tripData.destinations);
+      setTripData(tripData);
       return tripData;
     } catch (error) {
       console.error("Error fetching trip data:", error);
@@ -191,7 +194,7 @@ const FinalPlannedTrip = () => {
           <FaUserFriends style={{backgroundColor: "green"}}/> 
           Add Users
           </div>
-          {addUser ? <AddUser setAddUser={setAddUser} handleAddUser = {handleAddUser} error={error} />: ""}
+          {addUser ? <AddUser setAddUser={setAddUser} handleAddUser = {handleAddUser} error={error} tripId = {tripData._id} />: ""}
         <div className="mt-20 flex flex-col" id="test">
           <VerticalTimeline>
             {initialLocation && (

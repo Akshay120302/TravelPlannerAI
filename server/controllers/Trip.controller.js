@@ -1,4 +1,6 @@
 import Trip from '../models/Tripdata.js';
+import Invitation from '../models/AddUserNotification.js';
+import User from '../models/User.model.js';
 import { errorHandler } from '../utils/error.js';
 
 // Create a new trip
@@ -24,6 +26,84 @@ export const createTrip = async (req, res, next) => {
     next(errorHandler(500, "Failed to create trip"));
   }
 };
+
+export const sendInvitation = async (req, res) => {
+  const { tripId, email } = req.body;
+  const senderId = req.user.id; // Assuming the sender is authenticated
+
+  try {
+    // Check if the recipient is a registered user
+    const recipient = await User.findOne({ email });
+
+    if (!recipient) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Check if an invitation already exists
+    const existingInvitation = await Invitation.findOne({ tripId, recipientEmail: email });
+    if (existingInvitation) {
+      return res.status(400).json({ message: 'Invitation already sent' });
+    }
+
+    // Create a new invitation
+    const newInvitation = new Invitation({
+      tripId,
+      senderId,
+      recipientEmail: email,
+    });
+
+    await newInvitation.save();
+    
+    // (Optional) Send an email to notify the user of the invitation
+    // await sendInvitationEmail(email); // Define this function for email service
+
+    res.status(200).json({ message: 'Invitation sent successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+export const fetchPendingInvitations = async (req, res) => {
+  try {
+    // Fetch the user from the database using the ID
+    const user = await User.findById(req.user.id);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Now use the user's email to find invitations
+    const invitations = await Invitation.find({
+      recipientEmail: new RegExp(`^${user.email}$`, 'i'), // Case-insensitive email match
+      status: 'pending'
+    });
+
+    res.status(200).json(invitations);
+  } catch (error) {
+    console.error(error); // Log the error for debugging
+    res.status(500).json({ message: 'Error fetching invitations' });
+  }
+};
+
+export const respondToInvitation = async (req, res) => {
+  const { id } = req.params;
+  const { status } = req.body; // 'accepted' or 'rejected'
+
+  try {
+    const invitation = await Invitation.findById(id);
+    if (!invitation) {
+      return res.status(404).json({ message: 'Invitation not found' });
+    }
+
+    invitation.status = status;
+    await invitation.save();
+    res.status(200).json({ message: `Invitation ${status}` });
+  } catch (error) {
+    res.status(500).json({ message: 'Error responding to invitation' });
+  }
+};
+
 
 
 // Dummy function for trip options

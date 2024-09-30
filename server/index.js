@@ -11,6 +11,9 @@ import { chatBotHandler } from "./controllers/Chatbot.controller.js";
 import cookieParser from 'cookie-parser';
 import path from 'path';
 
+import { createServer } from "http";
+import { initializeSocket } from "./socket/socket.js"; // Import socket logic
+
 dotenv.config();
 
 mongoose.connect(process.env.MONGO)
@@ -25,6 +28,9 @@ const __dirname = path.resolve();
 
 const app = express();
 const port = process.env.PORT || 8000;
+
+const httpServer = createServer(app);
+const io = initializeSocket(httpServer); // Initialize sockets
 
 app.get('/api/weather', async (req, res) => {
     const { latitude, longitude } = req.query;

@@ -31,6 +31,36 @@ const Chatbot = ({ weatherData, airQualityData }) => {
     ]);
   };
 
+  const fetchChatHistory = async () => {
+    if (!currentUser) {
+      console.warn("No current user found.");
+      return;
+    }
+  
+    try {
+      const response = await fetch("/api/chatbot/history", {
+        method: "GET",
+        credentials: "include", // Ensure cookies are sent with the request
+      });
+  
+      console.log(response);
+  
+      if (!response.ok) {
+        throw new Error(`Failed to fetch chat history: ${response.status}`);
+      }
+  
+      const data = await response.json();
+      if (data.chatHistory) {
+        setChatHistory(data.chatHistory);
+      } else {
+        console.warn("No chat history found in response.");
+      }
+    } catch (error) {
+      console.error("Failed to fetch chat history:", error);
+    }
+  };
+  
+
   useEffect(() => {
     const initializeChat = async () => {
       if (currentUser) {
@@ -105,41 +135,40 @@ const Chatbot = ({ weatherData, airQualityData }) => {
       setError("Error! Please ask a question!");
       return;
     }
+  
     try {
-      const options = {
-        method: "POST",
-        body: JSON.stringify({
-          history: chatHistory,
-          message: value,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const requestBody = {
+        history: chatHistory.map(chatItem => ({
+          role: chatItem.role,
+          parts: chatItem.parts
+        })),
+        message: value
       };
-      const response = await fetch("/api/chatbot/gemini", options);
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
+  
+      // Log the request body for debugging
+      console.log("Sending request body to backend:", requestBody);
+  
+      const response = await fetch("/api/chatbot/gemini", {
+        method: "POST",
+        body: JSON.stringify(requestBody),
+        headers: { "Content-Type": "application/json" }
+      });
+  
       const data = await response.json();
+  
       setChatHistory((oldChatHistory) => [
         ...oldChatHistory,
-        {
-          role: "user",
-          parts: [value],
-        },
-        {
-          role: "model",
-          parts: [data.response],
-        },
+        { role: "user", parts: [value] },
+        { role: "model", parts: [data.response] }
       ]);
+  
       setValue("");
-      console.log("Sending to /api/chatbot/gemini:", { history: chatHistory, message: value });
-
     } catch (error) {
       console.error("Error in getResponse:", error);
       setError("Something went wrong! Please try again later.");
     }
   };
+  
 
   const clear = () => {
     setValue("");
@@ -154,21 +183,38 @@ const Chatbot = ({ weatherData, airQualityData }) => {
   };
 
   const saveChatHistory = async () => {
-    getResponse();
+    if (!chatHistory || chatHistory.length === 0) {
+      console.warn("Chat history is empty. No history to save.");
+      return;
+    }
+  
     try {
-      await fetch("/api/chatbot/history", {
+      const requestBody = {
+        chatHistory: chatHistory.map(chatItem => ({
+          role: chatItem.role,
+          parts: chatItem.parts
+        }))
+      };
+  
+      // Log the request body to debug
+      console.log("Saving chat history:", requestBody);
+  
+      const response = await fetch("/api/chatbot/history", {
         method: "POST",
-        body: JSON.stringify({ chatHistory }),
-        headers: {
-          "Content-Type": "application/json"
-        },
+        body: JSON.stringify(requestBody),
+        headers: { "Content-Type": "application/json" },
         credentials: "include", // Ensure cookies are sent with the request
       });
-      console.log(body);
+  
+      if (!response.ok) {
+        throw new Error(`Failed to save chat history: ${response.status}`);
+      }
     } catch (error) {
       console.error("Failed to save chat history:", error);
     }
   };
+  
+  
   
   useEffect(() => {
     // Save chat history on component unmount
