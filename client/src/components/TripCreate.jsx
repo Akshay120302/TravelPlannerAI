@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 
-const TripCreate = ({ showReviewPage, closeReview , id }) => {
+const TripCreate = ({ showReviewPage, closeReview, id }) => {
   if (!showReviewPage) return null;
 
   const dispatch = useDispatch();
@@ -32,11 +32,37 @@ const TripCreate = ({ showReviewPage, closeReview , id }) => {
     });
   };
 
+  // const updateTrip = async () => {
+  //   try {
+  //     const response = await fetch(`/api/trip/update/${id}`, {
+  //       method: "PUT",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ status: false }),
+  //     });
+
+  //     if (!response.ok) {
+  //       const errorData = await response.json();
+  //       console.error("Error updating trip status:", errorData.message);
+  //       return;
+  //     }
+
+  //     const updatedTrip = await response.json();
+  //     console.log("Trip status updated successfully:", updatedTrip);
+  //   } catch (error) {
+  //     console.error("Error updating trip:", error);
+  //   }
+  // };
+
   const handleReviewSubmit = async (e) => {
     e.preventDefault();
-    try {
-      console.log("Form data to be sent:", formData);
   
+    // Logging the ID to ensure it's correct before making the request
+    console.log("Trip ID being updated:", id); 
+  
+    try {
+      // Posting the review
       const response = await fetch("/api/review/postReview", {
         method: "POST",
         headers: {
@@ -51,26 +77,12 @@ const TripCreate = ({ showReviewPage, closeReview , id }) => {
         return;
       }
   
+      // Review posted successfully
       const data = await response.json();
       console.log(data);
   
-      // Update the trip's status to false
-      await updateTrip();
-  
-      closeReview();
-      navigate("/create-trip");
-      dispatch(deleteTripDestinations());
-      location.reload();
-    } catch (e) {
-      console.error("Error posting review:", e);
-      setError("An error occurred while submitting the review.");
-    }
-  };
-  
-
-  const updateTrip = async () => {
-    try {
-      const response = await fetch(`/api/trip/update/${id}`, {
+      // Updating trip status after review submission
+      const resUpdateStatus = await fetch(`/api/trip/update/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -78,19 +90,26 @@ const TripCreate = ({ showReviewPage, closeReview , id }) => {
         body: JSON.stringify({ status: false }),
       });
   
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error("Error updating trip status:", errorData.message);
+      if (!resUpdateStatus.ok) {
+        const errData = await resUpdateStatus.json(); // Fixing variable reference
+        console.error("Error updating trip status:", errData.message);
         return;
       }
   
-      const updatedTrip = await response.json();
+      // Log the success message
+      const updatedTrip = await resUpdateStatus.json();
       console.log("Trip status updated successfully:", updatedTrip);
+  
+      // Cleanup actions
+      closeReview();
+      navigate("/create-trip");
+      dispatch(deleteTripDestinations());
+  
     } catch (error) {
-      console.error("Error updating trip:", error);
+      console.error("Error posting review or updating trip:", error);
+      setError("An error occurred while submitting the review.");
     }
   };
-
 
   return (
     <>
@@ -155,10 +174,7 @@ const TripCreate = ({ showReviewPage, closeReview , id }) => {
                 required
               />
             </div>
-            <button
-              type="submit"
-              className="submit-button"
-            >
+            <button type="submit" className="submit-button">
               Submit Review
             </button>
           </form>

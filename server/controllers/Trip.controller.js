@@ -126,16 +126,19 @@ export const getListing = async (req, res, next) => {
 
 export const updatedTrip = async (req, res, next) => {
   try {
+    // Find and update the trip based on the ID
     const updatedTrip = await Trip.findByIdAndUpdate(
-      req.params.id,  // Assuming _id is passed in the route
-      { $set: { status: req.body.status } },
-      { new: true }  // This option ensures you get the updated document back
+      req.params.id,  // Use req.params.id, not req.params._id
+      { $set: { status: req.body.status } },  // Setting status to false
+      { new: true }  // Return the updated document
     );
 
+    // If no trip is found, return a 404 error
     if (!updatedTrip) {
       return res.status(404).json({ success: false, message: "Trip not found" });
     }
 
+    // Return the updated trip data
     res.status(200).json({ success: true, data: updatedTrip });
   } catch (error) {
     next(error);

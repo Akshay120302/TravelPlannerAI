@@ -19,7 +19,6 @@ const CreateTrip = () => {
   };
   
   const { currentUser } = useSelector((state) => state.user);
-  
   useEffect(() => {
     const handleShowListings = async () => {
       try {
@@ -27,13 +26,22 @@ const CreateTrip = () => {
         const data = await res.json();
         console.log(data);
         setListings(data);
-        setCurrentListings(Listings[Listings.length].status);
+  
+        // Check if Listings array is not empty before accessing the last element
+        if (data && data.length > 0) {
+          const val = data[data.length - 1];  // Get the last listing
+          setCurrentListings(val?.status);    // Use optional chaining to safely access 'status'
+        } else {
+          console.log("No listings available");
+        }
       } catch (error) {
         console.error("Error Fetching User Listing:", error);
       }
     };
   
-    handleShowListings();
+    if (currentUser._id) {
+      handleShowListings();
+    }
   }, [currentUser._id]);
   
 
@@ -48,16 +56,17 @@ const CreateTrip = () => {
               Your Trips
             </h2>
             <div className="btn-handler">
-              {currentListings ? (<Link to = '/new-trip'>
-              <button className="New-trip-btn">
-                New Trip
-              </button>
-              </Link>) : (<>
+              {currentListings ? (<>
               <button className="New-trip-btn" onClick={() => {setWarning(true)}}>
                 New Trip
               </button>
-              </>)}
-              {console.log(currentListings)}
+              </>) : 
+              (<Link to = '/new-trip'>
+                <button className="New-trip-btn">
+                  New Trip
+                </button>
+                </Link>)}
+              {/* {console.log(currentListings)} */}
               {/* <Link to = '/new-trip'>
               <button className="New-trip-btn">
                 New Trip

@@ -13,7 +13,7 @@ router.get('/flights', getTripOptions('flights'));
 router.get('/restaurants', getTripOptions('restaurants'));
 router.get('/get/', getListing);
 router.get('/get/:_id', getTrip);
-router.get('/update/:_id', updatedTrip);
+router.put('/update/:id', updatedTrip);
 router.delete('/delete/:_id', verifyToken, deleteTrip);
 
 // Send an invitation
