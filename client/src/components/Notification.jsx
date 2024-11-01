@@ -21,7 +21,7 @@ const Notification = () => {
             // Return the enriched invitation object with sender's name and trip name
             return {
               ...invitation,
-              tripName: trip.trip_name,     // Assuming the trip's name is in the `name` field
+              tripName: trip.trip_name,     //trip's name is in the `name` field
             };
           })
         );

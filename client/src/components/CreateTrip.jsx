@@ -53,7 +53,7 @@ const CreateTrip = () => {
        
           <div className="mt-12 flex min-h-[47px] w-full items-center justify-between ">
             <h2 className="min-w-fit items-center text-xl font-medium md:text-2xl mt-12 ml-10">
-              Your Trips
+            {currentListings ? "Your Trips" : ""}
             </h2>
             <div className="btn-handler">
               {currentListings ? (<>
@@ -61,11 +61,15 @@ const CreateTrip = () => {
                 New Trip
               </button>
               </>) : 
-              (<Link to = '/new-trip'>
-                <button className="New-trip-btn">
-                  New Trip
-                </button>
-                </Link>)}
+              (
+              // <Link to = '/new-trip'>
+              //   <button className="New-trip-btn">
+              //     New Trip
+              //   </button>
+              //   </Link>
+              ""
+                )
+                }
               {/* {console.log(currentListings)} */}
               {/* <Link to = '/new-trip'>
               <button className="New-trip-btn">
@@ -77,7 +81,7 @@ const CreateTrip = () => {
           {warning && <span className="text-sm text-green-500">You have an Ongoing Trip !! Finish the trip to create a new trip.</span>}
           {Listings && Listings.length > 0 ? (
             <>
-              <div className="mt-8 mb-8 flex flex-wrap gap-4">
+              <div className="mt-8 mb-8 w-[100%] flex flex-wrap gap-4">
               {Listings.map((listing) => (
                 <ListingItem listing={listing} key={listing._id} />
               ))}

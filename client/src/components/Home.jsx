@@ -87,7 +87,7 @@ const Home = () => {
 
       {/* new trip button */}
       {currentUser ? 
-      <Link to="/new-trip">
+      <Link to="/create-trip">
           
       <button className="trip-btn">
         <svg
